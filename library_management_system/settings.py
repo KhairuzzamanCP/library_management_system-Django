@@ -24,12 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7!%*b*89vazt(4p1rb0z!iz2xc_jrx)x8n*(-^=92$129n_s&)'
+SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = 'django-insecure-7!%*b*89vazt(4p1rb0z!iz2xc_jrx)x8n*(-^=92$129n_s&)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://mamar-bank-django.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -88,11 +90,20 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://mamarbank_4pis_user:HQIwYB8YY6sqkCgaMfy8rqJG1JM6BgWY@dpg-cm8p5fed3nmc73b0dq50-a.oregon-postgres.render.com/mamarbank_4pis',
+       
+    )
+   
 }
 
 

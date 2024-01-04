@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+ <div class="flex justify-center items-center mt-5 mb-10">
+        <div class="">
+            <h2 class="font-bold text-2xl my-4">Welcome To Our Mainline Knowledge
+            </h2>
+            <p class="text-lg my-2">A library is a collection of books, and possibly other materials and media, that is accessible for use by its members and members of <br> allied institutions. </p>
+            <div>
+                <button class="btn btn-primary">Borrow Now</button>
+                <button class="btn btn-secondary mx-2">Explore More</button>
+            </div>
+        </div>
+        <div class="w-full">
+            <img src="{% static 'images/libr.jpg' %}" alt="">
+        </div>
+    </div>
+<div class="flex">
+    <div class="w-1/4 h-screen">
+        <h4 class="font-semibold text-xl my-2 text-teal-700">Filter By Category:</h4>
+        {% for category in categories %}
+            <a class="font-medium text-lg block text-teal-700 hover:text-orange-700 hover:text-xl" href="{% url "category_wise_book" category.slug %}">{{category}}</a>
+        {% endfor %}
+    </div>
+    <div class="w-3/4">
+        <h4 class="font-semibold text-xl text-teal-700 my-2">Result Founds: {{books|length}}</h4>
+        {% if books|length == 0 %}
+            <div class="flex items-center justify-center bg-red-200 rounded md:px-8 py-4 h-screen">
+                <h1 class="text-4xl font-bold text-red-500">No book found!!!</h1>
+            </div>
+            {% else %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+            {% for book in books %}
+                <div class="card bg-base-100 shadow-xl">
+                    <figure><img src="{{book.image.url}}" alt="Book" /></figure>
+                    <div class="card-body">
+                        <h2 class="card-title">{{book.title}}</h2>
+                        <p>{{book.description|truncatewords:10}}</p>
+                        <div class="card-actions justify-end">
+                        <a href="{% url "details" book.id %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}

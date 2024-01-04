@@ -100,9 +100,11 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://mamarbank_4pis_user:HQIwYB8YY6sqkCgaMfy8rqJG1JM6BgWY@dpg-cm8p5fed3nmc73b0dq50-a.oregon-postgres.render.com/mamarbank_4pis',
+        default='postgres://library_management_system_tl4p_user:GCIM0NtRFVFEYeyQ4yB6vq107bejhLnu@dpg-cmba177qd2ns73evkds0-a.oregon-postgres.render.com/library_management_system_tl4p',
        
     )
+
+    
    
 }
 
